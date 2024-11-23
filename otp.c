@@ -41,6 +41,7 @@ Arguments: :\n\
 <operation>  L'opération à effectuer\n\
 <input>      Le fichier sur lequel le programme travaillera\n\
 <key>        Le fichier qui stocke la clé\n\
+[output]     Le fichier qui contiendra le résultat\n\
 \n\
 Operations:\n\
 -e, --encipher  Chiffer le fichier d'entrée\n\
@@ -52,6 +53,12 @@ int main(int argc, char* argv[]){
 
     if (argc == 1){
         printf("Erreur : Vous n'avez précisé aucune opération.\n");
+        print_usage();
+        return EXIT_FAILURE;
+    }
+
+    if (argc < 3){
+        printf("Erreur : Vous n'avez pas donné assez d'arguments.\n");
         print_usage();
         return EXIT_FAILURE;
     }
