@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void encipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 
@@ -61,6 +62,28 @@ int main(int argc, char* argv[]){
         printf("Erreur : Vous n'avez pas donné assez d'arguments.\n");
         print_usage();
         return EXIT_FAILURE;
+    }
+
+    int operation;
+    if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--encipher") == 0){
+        operation = 1;
+    } 
+    else if (strcmp(argv[1], "-d") == 0 || strcmp(argv[1], "--decipher") == 0) {
+        operation = 2;
+    } else {
+        operation = 0;
+    }
+
+    if (operation == 0) {
+        printf("Erreur : Opération invalide.\n");
+        print_usage();
+        return EXIT_FAILURE;
+    }
+
+    if (operation == 1){
+        printf("Le programme va chiffrer!\n");
+    } else if (operation == 2) {
+        printf("Le programme va déchifrer!\n");
     }
 
     return EXIT_SUCCESS;
