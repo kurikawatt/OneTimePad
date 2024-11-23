@@ -35,17 +35,17 @@ void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 
 void print_usage(){
     printf("\
-    Usage : otp <operation> <input> <key> [output]\
-    \
-    Arguments: :\
-    <operation>  L'opération à effectuer\
-    <input>      Le fichier sur lequel le programme travaillera\
-    <key>        Le fichier qui stocke la clé\
-    \
-    Operations:\
-    -e, --encipher  Chiffer le fichier d'entrée\
-    -d, --decipher  Déchiffrer le fichier d'entrée\
-    \n");
+Usage : otp <operation> <input> <key> [output]\n\
+\n\
+Arguments: :\n\
+<operation>  L'opération à effectuer\n\
+<input>      Le fichier sur lequel le programme travaillera\n\
+<key>        Le fichier qui stocke la clé\n\
+\n\
+Operations:\n\
+-e, --encipher  Chiffer le fichier d'entrée\n\
+-d, --decipher  Déchiffrer le fichier d'entrée\n\
+\n");
 }
 
 int main(int argc, char* argv[]){
