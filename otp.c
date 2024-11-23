@@ -33,10 +33,26 @@ void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
     }
 }
 
+void print_usage(){
+    printf("\
+    Usage : otp <operation> <input> <key> [output]\
+    \
+    Arguments: :\
+    <operation>  L'opération à effectuer\
+    <input>      Le fichier sur lequel le programme travaillera\
+    <key>        Le fichier qui stocke la clé\
+    \
+    Operations:\
+    -e, --encipher  Chiffer le fichier d'entrée\
+    -d, --decipher  Déchiffrer le fichier d'entrée\
+    \n");
+}
+
 int main(int argc, char* argv[]){
 
     if (argc == 1){
         printf("Erreur : Vous n'avez précisé aucune opération.\n");
+        print_usage();
         return EXIT_FAILURE;
     }
 
