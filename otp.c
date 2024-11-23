@@ -34,5 +34,11 @@ void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 }
 
 int main(int argc, char* argv[]){
+
+    if (argc == 1){
+        printf("Erreur : Vous n'avez précisé aucune opération.\n");
+        return EXIT_FAILURE;
+    }
+
     return EXIT_SUCCESS;
 }
