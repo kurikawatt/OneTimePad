@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-void encipher(FILE* secret_file, FILE* output_file, FILE* key_file){
+void encipher(FILE* message_file, FILE* output_file, FILE* key_file){
 
     int code;
     int key;
     int enciphered_code;
     // Read the file until End Of File char (EOF)
-    while( (code=fgetc(secret_file)) != EOF ){
+    while( (code=fgetc(message_file)) != EOF ){
         key = rand(); // pick one use key with random
         enciphered_code = code ^ key; // code XOR key = enciphered_code
         // write output files
@@ -18,15 +18,7 @@ void encipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 
 }
 
-void str_copy_with_size(char* dest, char* src, size_t size){
-    int i;
-    for (i = 0 ; i < size-1; i++){
-        dest[i] = src[i];
-    }
-    dest[i] = '\0';
-}
-
-void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
+void decipher(FILE* message_file, FILE* output_file, FILE* key_file){
 
     int enciphered_code;
     int key;
@@ -34,12 +26,20 @@ void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
     // Read the file until End Of File (EOF)
     // Assuming that the Enciphered File (= E.F.) and Key File have
     // at least the same size, or E.F. smaller than Key File
-    while ( (enciphered_code=fgetc(secret_file)) != EOF ){
+    while ( (enciphered_code=fgetc(message_file)) != EOF ){
         key = fgetc(key_file);
         code = enciphered_code ^ key; // enciphered_code XOR key = code
         // Write output file
         fputc(code, output_file);
     }
+}
+
+void str_copy_with_size(char* dest, char* src, size_t size){
+    int i;
+    for (i = 0 ; i < size-1; i++){
+        dest[i] = src[i];
+    }
+    dest[i] = '\0';
 }
 
 void print_usage(){
