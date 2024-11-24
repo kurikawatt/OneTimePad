@@ -97,11 +97,25 @@ int main(int argc, char* argv[]){
         strcpy(output_filename, "message.out");
     }
 
+    FILE* input = fopen(input_filename, "r"); // might not exists
+
+    if (input == NULL){
+        printf("Erreur : le fichier %s n'existe pas.\n", input_filename);
+        return EXIT_FAILURE;
+    }
+
+    FILE* output = fopen(output_filename, "w");
+    FILE* key_file;
+
     if (operation == 1){
         printf("Le programme va chiffrer %s dans %s!\n", input_filename, output_filename);
     } else if (operation == 2) {
         printf("Le programme va déchifrer %s dans %s!\n", input_filename, output_filename);
     }
+
+    fclose(input);
+    fclose(output);
+    fclose(key_file);
 
     return EXIT_SUCCESS;
 }
