@@ -75,6 +75,7 @@ int main(int argc, char* argv[]){
     int operation;
     char* input_filename = argv[2];
     char output_filename[50];
+    char* key_filename = argv[3];
 
     if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--encipher") == 0){
         operation = 1;
@@ -91,8 +92,8 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
 
-    if (argc >= 4){
-        str_copy_with_size(output_filename, argv[3], 50);
+    if (argc >= 5){
+        str_copy_with_size(output_filename, argv[4], 50);
     } else {
         strcpy(output_filename, "message.out");
     }
@@ -108,9 +109,13 @@ int main(int argc, char* argv[]){
     FILE* key_file;
 
     if (operation == 1){
-        printf("Le programme va chiffrer %s dans %s!\n", input_filename, output_filename);
+        key_file = fopen(key_filename, "w");
     } else if (operation == 2) {
-        printf("Le programme va déchifrer %s dans %s!\n", input_filename, output_filename);
+        key_file = fopen(key_filename, "r");
+        if (key_file == NULL){
+            printf("Erreur : le fichier %s n'existe pas.\n", key_filename);
+            return EXIT_FAILURE;
+        }
     }
 
     fclose(input);
