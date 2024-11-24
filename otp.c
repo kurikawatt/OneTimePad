@@ -66,7 +66,7 @@ int main(int argc, char* argv[]){
 
     int operation;
     char* input_filename = argv[2];
-    size_t input_filename_size = strlen(input_filename);
+    char output_filename[50];
 
     if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--encipher") == 0){
         operation = 1;
@@ -83,10 +83,16 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
 
+    if (argc >= 4){
+        strcpy(output_filename, argv[3]);
+    } else {
+        strcpy(output_filename, "message.out");
+    }
+
     if (operation == 1){
-        printf("Le programme va chiffrer %s!\n", input_filename);
+        printf("Le programme va chiffrer %s dans %s!\n", input_filename, output_filename);
     } else if (operation == 2) {
-        printf("Le programme va déchifrer %s!\n", input_filename);
+        printf("Le programme va déchifrer %s dans %s!\n", input_filename, output_filename);
     }
 
     return EXIT_SUCCESS;
