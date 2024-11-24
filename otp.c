@@ -110,12 +110,14 @@ int main(int argc, char* argv[]){
 
     if (operation == 1){
         key_file = fopen(key_filename, "w");
+        encipher(input, output, key_file);
     } else if (operation == 2) {
         key_file = fopen(key_filename, "r");
         if (key_file == NULL){
             printf("Erreur : le fichier %s n'existe pas.\n", key_filename);
             return EXIT_FAILURE;
         }
+        decipher(input, output, key_file);
     }
 
     fclose(input);
