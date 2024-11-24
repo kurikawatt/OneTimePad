@@ -18,6 +18,14 @@ void encipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 
 }
 
+void str_copy_with_size(char* dest, char* src, size_t size){
+    int i;
+    for (i = 0 ; i < size-1; i++){
+        dest[i] = src[i];
+    }
+    dest[i] = '\0';
+}
+
 void decipher(FILE* secret_file, FILE* output_file, FILE* key_file){
 
     int enciphered_code;
@@ -84,7 +92,7 @@ int main(int argc, char* argv[]){
     }
 
     if (argc >= 4){
-        strcpy(output_filename, argv[3]);
+        str_copy_with_size(output_filename, argv[3], 50);
     } else {
         strcpy(output_filename, "message.out");
     }
